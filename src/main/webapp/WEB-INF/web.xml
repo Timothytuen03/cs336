@@ -10,4 +10,12 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>loginPage.jsp</welcome-file>   
   </welcome-file-list>
+  <servlet>
+        <servlet-name>dispUser</servlet-name>
+        <servlet-class>servleets.getUsers</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dispUser</servlet-name>
+        <url-pattern>/admin/viewAcc</url-pattern>
+    </servlet-mapping>
 </web-app>

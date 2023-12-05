@@ -21,45 +21,26 @@
 		Statement stmt = con.createStatement();
 
 		//Get parameters from the HTML form at the index.jsp
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		
-		//Make a select statement for the Sells table:
-		String find = "SELECT * FROM user WHERE username = (?) AND password = (?)";
+		String queryParam = request.getParameter("number");
+
+
+		//Make a select statement:
+		String find = "SELECT";
 		//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 		PreparedStatement ps = con.prepareStatement(find);
 
 		//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
-		ps.setString(1, username);
-		ps.setString(2, password);
-		ResultSet result = ps.executeQuery();
-
-		out.print(result);
-		if(result.next() == false) {
-			out.print("Incorrect credentials, created new");
-			String addPerson = "INSERT INTO user (username, password, isAdmin, isRep) VALUES(?, ?, ?, ?)";
-			PreparedStatement psNew = con.prepareStatement(addPerson);
-			psNew.setString(1, username);
-			psNew.setString(2, password);
-			psNew.setBoolean(3, false);
-			psNew.setBoolean(4, false);
-			psNew.executeUpdate();
-			
-			out.print("Done insert");
-			/* response.sendRedirect("http://localhost:8080/cs336FinalProject/home.jsp"); */
-		} else {
-			out.print("Correct credentials");
-			response.sendRedirect("http://localhost:8080/cs336FinalProject/home.jsp");
-		}
-		/* int id = result.getInt("idcustomer"); */
-		/* out.print(" user's id: " + id + "   "); */
+		ps.setString(1, );
+		
+		
 		//Close the connection. Don't forget to do it, otherwise you're keeping the resources of the server allocated.
 		con.close();
-		out.print("select succeeded");
+		/* response.sendRedirect("http://localhost:8080/cs336FinalProject/admin/viewAcc.jsp"); */
+		
 		
 	} catch (Exception ex) {
-		out.print(ex);
-		out.print("select failed");
+		out.println(ex);
+		out.println("Can't find reservations");
 	}
 %>
 </body>

@@ -12,13 +12,7 @@
 	</head>
 	
 	<body>
-	
-		<button onclick="location.href ='/cs336FinalProject/client/userhome.jsp'" >User page</button>
-		<button onclick="location.href ='/cs336FinalProject/admin/adminhome.jsp'" >Admin page</button>
-		<button onclick="location.href ='/cs336FinalProject/customer-rep/repHome.jsp'" >Customer Rep</button>
-	
-		Logout Here
-		<button onclick="location.href ='/cs336FinalProject/loginPage.jsp'" >Logout</button>
+		
 
 	</body>
 </html>
