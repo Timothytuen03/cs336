@@ -25,7 +25,6 @@
 				<td style="padding: 25px">Departing Airport</td>
 				<td style="padding: 25px">Arrival Airport</td>
 				<td style="padding: 25px">Aircraft ID</td>
-				<td style="padding: 25px">Departure</td>
 				
 			</tr>
 
@@ -45,7 +44,7 @@
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String today = dateFormat.format((new java.util.Date())).toString();
 			//Make a select statement for the Sells table:
-			String findPast = "SELECT p.u_id, p.ticket_num, p.buy_date, p.booking_fee, p.total_fare, tf.flight_num, f.airline_id, f.out_airport, f.in_airport, f.aircraft_id, f.depart FROM purchase p inner join ticket_flight tf on p.ticket_num = tf.ticket_num inner join flight f on tf.flight_num = f.flight_num WHERE p.u_id = ? AND f.depart < ?";
+			String findPast = "SELECT p.u_id, p.ticket_num, p.buy_date, p.booking_fee, p.total_fare, tf.flight_num, f.airline_id, f.out_airport, f.in_airport, f.aircraft_id, f.depart FROM purchase p inner join ticket_flight tf on p.ticket_num = tf.ticket_num inner join flight f on tf.flight_num = f.flight_num WHERE p.u_id = ? AND f.depart > ?";
 			//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 			PreparedStatement psPast = con.prepareStatement(findPast);
 			

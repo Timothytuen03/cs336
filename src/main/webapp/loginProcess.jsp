@@ -35,9 +35,10 @@
 		ResultSet result = ps.executeQuery();
 
 		out.print(result);
+		
 		if(result.next() == false) {
-			out.print("Incorrect credentials, created new");
-			String addPerson = "INSERT INTO user (username, password, isAdmin, isRep) VALUES(?, ?, ?, ?)";
+			out.print("Incorrect credentials");
+/* 			String addPerson = "INSERT INTO user (username, password, isAdmin, isRep) VALUES(?, ?, ?, ?)";
 			PreparedStatement psNew = con.prepareStatement(addPerson);
 			psNew.setString(1, username);
 			psNew.setString(2, password);
@@ -45,11 +46,19 @@
 			psNew.setBoolean(4, false);
 			psNew.executeUpdate();
 			
-			out.print("Done insert");
-			/* response.sendRedirect("http://localhost:8080/cs336FinalProject/home.jsp"); */
+			out.print("Done insert"); */
+			response.sendRedirect("http://localhost:8080/cs336FinalProject/loginPage.jsp");
 		} else {
 			out.print("Correct credentials");
-			response.sendRedirect("http://localhost:8080/cs336FinalProject/home.jsp");
+			HttpSession httpSession = request.getSession();
+            httpSession.setAttribute("user", result.getInt(1));
+			if(result.getBoolean(4)) {
+            	response.sendRedirect("http://localhost:8080/cs336FinalProject/admin/adminhome.jsp");
+            } else if(result.getBoolean(5)) {
+            	response.sendRedirect("http://localhost:8080/cs336FinalProject/customer-rep/repHome.jsp");
+            } else {
+				response.sendRedirect("http://localhost:8080/cs336FinalProject/client/userhome.jsp");
+            } 
 		}
 		/* int id = result.getInt("idcustomer"); */
 		/* out.print(" user's id: " + id + "   "); */

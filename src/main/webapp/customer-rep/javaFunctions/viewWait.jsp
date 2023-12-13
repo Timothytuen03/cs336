@@ -13,11 +13,11 @@
 	<body>
 		<table>
 			<tr>
-				<td style="padding: 25px">Question ID</td>
 				<td style="padding: 25px">User ID</td>
-				<td style="padding: 25px">Rep ID</td>
-				<td style="padding: 25px">Question</td>
-				<td style="padding: 25px">Answer</td>
+				<td style="padding: 25px">Flight Number</td>
+				<td style="padding: 25px">Airline</td>
+				<td style="padding: 25px">First Name</td>
+				<td style="padding: 25px">Last Name</td>
 			</tr>
 
 		<%
@@ -31,10 +31,16 @@
 			//Create a SQL statement
 			Statement stmt = con.createStatement();
 			
+			String flight_num = request.getParameter("flight_num");
+			String airline_id = request.getParameter("airline_id");
+			
 			//Make a select statement for the Sells table:
-			String findWait = "SELECT * FROM q_a";
+			String findWait = "SELECT * FROM waitlist w inner join customer c on w.u_id = c.u_id WHERE w.flight_num = ? AND w.airline_id = ?";
 			//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 			PreparedStatement psWait = con.prepareStatement(findWait);
+			
+			psWait.setString(1, flight_num);
+			psWait.setString(2, airline_id);
 	
 			ResultSet rsWait = psWait.executeQuery();
 			
@@ -44,10 +50,9 @@
 				<tr>
 					<td style="padding: 25px"><p><%= rsWait.getInt(1) %></p></td>
 					<td style="padding: 25px"><p><%= rsWait.getInt(2) %></p></td>
-					<td style="padding: 25px"><p><%= rsWait.getInt(3) %></p></td>
-					<td style="padding: 25px"><p><%= rsWait.getString(4) %></p></td>
+					<td style="padding: 25px"><p><%= rsWait.getString(3) %></p></td>
 					<td style="padding: 25px"><p><%= rsWait.getString(5) %></p></td>
-					
+					<td style="padding: 25px"><p><%= rsWait.getString(6) %></p></td>
 				</tr>
 		<%	}; %>
 		</table>
@@ -60,15 +65,5 @@
 			out.println(ex);
 		}
 		%>
-		<form method="post" action="http://localhost:8080/cs336FinalProject/client/javaFunctions/qaKeyword.jsp">
-			<label for="keyword">Search by keyword</label>
-			<input type="text" name="keyword"/>
-			<input type="submit"/>
-		</form>
-		<form method="post" action="http://localhost:8080/cs336FinalProject/client/javaFunctions/qaPost.jsp">
-			<label for="question">Ask your question!</label>
-			<input type="text" name="question"/>
-			<input type="submit"/>
-		</form>
 	</body>
 </html>

@@ -13,12 +13,12 @@
 	
 	<body>
 		
-		<button onclick="location.href ='/cs336FinalProject/client/makeRes.jsp'" >Make Reservation</button>
-		<button onclick="location.href ='/cs336FinalProject/client/editRes.jsp'" >Edit Res</button>
-		<button onclick="location.href ='/cs336FinalProject/client/adjInfo.jsp'" >Adjust aircraft, airport and flight Info</button>
-		<button onclick="location.href ='/cs336FinalProject/client/flightWait.jsp'" >View Waiting list for particular flight</button>
-		<button onclick="location.href ='/cs336FinalProject/client/viewFlight.jsp'" >View Flights by Airport</button>
-		<button onclick="location.href ='/cs336FinalProject/client/ansQ.jsp'" >Reply to Questions</button>
+		<button onclick="location.href ='/cs336FinalProject/customer-rep/makeRes.jsp'" >Make Reservation</button>
+		<button onclick="location.href ='/cs336FinalProject/customer-rep/viewRes.jsp'" >Edit Res</button>
+		<button onclick="location.href ='/cs336FinalProject/customer-rep/adjInfo.jsp'" >Adjust aircraft, airport and flight Info</button>
+		<button onclick="location.href ='/cs336FinalProject/customer-rep/flightWait.jsp'" >View Waiting list for particular flight</button>
+		<button onclick="location.href ='/cs336FinalProject/customer-rep/viewFlight.jsp'" >View Flights by Airport</button>
+		<button onclick="location.href ='/cs336FinalProject/customer-rep/ansQ.jsp'" >Reply to Questions</button>
 		
 
 	</body>

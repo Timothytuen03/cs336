@@ -12,14 +12,6 @@
 	</head>
 	<body>
 		<table>
-			<tr>
-				<td style="padding: 25px">Question ID</td>
-				<td style="padding: 25px">User ID</td>
-				<td style="padding: 25px">Rep ID</td>
-				<td style="padding: 25px">Question</td>
-				<td style="padding: 25px">Answer</td>
-			</tr>
-
 		<%
 		try {
 			
@@ -30,36 +22,33 @@
 	
 			//Create a SQL statement
 			Statement stmt = con.createStatement();
+			HttpSession httpSession = request.getSession();
+			
+			String keyword = request.getParameter("keyword");
 			
 			//Make a select statement for the Sells table:
-			String findWait = "SELECT * FROM q_a";
+			String updateAns = "SELECT * FROM q_a WHERE question LIKE ? OR answer LIKE ?";
 			//Create a Prepared SQL statement allowing you to introduce the parameters of the query
-			PreparedStatement psWait = con.prepareStatement(findWait);
+			PreparedStatement psAns = con.prepareStatement(updateAns);
+			psAns.setString(1, '%'+keyword+'%');
+			psAns.setString(2, '%'+keyword+'%');
 	
-			ResultSet rsWait = psWait.executeQuery();
+			ResultSet rs = psAns.executeQuery();
 			
-			
-			while(rsWait.next()){
+			while(rs.next()){
 				%>
 				<tr>
-					<td style="padding: 25px"><p><%= rsWait.getInt(1) %></p></td>
-					<td style="padding: 25px"><p><%= rsWait.getInt(2) %></p></td>
-					<td style="padding: 25px"><p><%= rsWait.getInt(3) %></p></td>
-					<td style="padding: 25px"><p><%= rsWait.getString(4) %></p></td>
-					<td style="padding: 25px"><p><%= rsWait.getString(5) %></p></td>
-					<% if(rsWait.getString(5) == null) { %>
-						<td>
-						<form method="post" action="/cs336FinalProject/customer-rep/javaFunctions/answerQ.jsp?q_id=<%=rsWait.getInt(1)%>">
-							<label for="answer">Answer Question</label>
-							<input type="text" name="answer"/>
-							<input type="submit"/>
-						</form>
-						</td>
-					<%} %>
+					<td style="padding: 25px"><p><%= rs.getInt(1) %></p></td>
+					<td style="padding: 25px"><p><%= rs.getInt(2) %></p></td>
+					<td style="padding: 25px"><p><%= rs.getInt(3) %></p></td>
+					<td style="padding: 25px"><p><%= rs.getString(4) %></p></td>
+					<td style="padding: 25px"><p><%= rs.getString(5) %></p></td>
+					
 				</tr>
 		<%	}; %>
 		</table>
 		<%
+			
 			
 			//Close the connection. Don't forget to do it, otherwise you're keeping the resources of the server allocated.
 			con.close();

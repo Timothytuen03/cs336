@@ -16,14 +16,15 @@
 		<button onclick="location.href ='/cs336FinalProject/client/flightSearch.jsp'" >Search for Flights</button>
 		<button onclick="location.href ='/cs336FinalProject/client/qa.jsp'" >Q&A</button>
 		<button onclick="location.href ='/cs336FinalProject/client/prevFlight.jsp'" >View Past Flights</button>
-		<button onclick="location.href ='/cs336FinalProject/client/loginPage.jsp'" >Logout</button>
+		<button onclick="location.href ='/cs336FinalProject/client/nearFlight.jsp'" >View Upcoming Flights</button>
+		<button onclick="location.href ='/cs336FinalProject/loginPage.jsp'" >Logout</button>
 		
-		<form method="post" action="postQuestion.jsp">
+		<!-- <form method="post" action="postQuestion.jsp">
 			<input type="text" name="user" value="user"/>
 			<input type="text" name="topic" value="topic"/>
 			<input type="text" name="question" value="question"/>
 			<input type="submit"/>
-		</form>
+		</form> -->
 
 	</body>
 </html>

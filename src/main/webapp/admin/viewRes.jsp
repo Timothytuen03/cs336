@@ -22,8 +22,6 @@
 				document.getElementById("cust_name").style.display = "block"
 				document.getElementById("flight_num").style.display = "none"
 			}
-		    /* var currentSort = document.getElementById('currentCustomer'); */
-		    /* currentCustomer.firstChild.nodeValue = selectedCustomer; */
 		}
 	</script>
 	

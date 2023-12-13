@@ -13,11 +13,14 @@
 	<body>
 		<table>
 			<tr>
-				<td style="padding: 25px">Question ID</td>
-				<td style="padding: 25px">User ID</td>
-				<td style="padding: 25px">Rep ID</td>
-				<td style="padding: 25px">Question</td>
-				<td style="padding: 25px">Answer</td>
+				<td style="padding: 25px">Airline</td>
+				<td style="padding: 25px">Days of Operation</td>
+				<td style="padding: 25px">Flight Number</td>
+				<td style="padding: 25px">Domestic?</td>
+				<td style="padding: 25px">Departing Airport</td>
+				<td style="padding: 25px">Destination Airport</td>
+				<td style="padding: 25px">Departure Date</td>
+				<td style="padding: 25px">Aircraft ID</td>
 			</tr>
 
 		<%
@@ -31,10 +34,15 @@
 			//Create a SQL statement
 			Statement stmt = con.createStatement();
 			
+			String airport_id = request.getParameter("airport_id");
+			
 			//Make a select statement for the Sells table:
-			String findWait = "SELECT * FROM q_a";
+			String findWait = "SELECT * FROM flight WHERE in_airport = ? OR out_airport = ?";
 			//Create a Prepared SQL statement allowing you to introduce the parameters of the query
 			PreparedStatement psWait = con.prepareStatement(findWait);
+			
+			psWait.setString(1, airport_id);
+			psWait.setString(2, airport_id);
 	
 			ResultSet rsWait = psWait.executeQuery();
 			
@@ -42,12 +50,14 @@
 			while(rsWait.next()){
 				%>
 				<tr>
-					<td style="padding: 25px"><p><%= rsWait.getInt(1) %></p></td>
+					<td style="padding: 25px"><p><%= rsWait.getString(1) %></p></td>
 					<td style="padding: 25px"><p><%= rsWait.getInt(2) %></p></td>
 					<td style="padding: 25px"><p><%= rsWait.getInt(3) %></p></td>
-					<td style="padding: 25px"><p><%= rsWait.getString(4) %></p></td>
+					<td style="padding: 25px"><p><%= rsWait.getBoolean(4) %></p></td>
 					<td style="padding: 25px"><p><%= rsWait.getString(5) %></p></td>
-					
+					<td style="padding: 25px"><p><%= rsWait.getString(6) %></p></td>
+					<td style="padding: 25px"><p><%= rsWait.getDate(7) %></p></td>
+					<td style="padding: 25px"><p><%= rsWait.getInt(8) %></p></td>
 				</tr>
 		<%	}; %>
 		</table>
@@ -60,15 +70,5 @@
 			out.println(ex);
 		}
 		%>
-		<form method="post" action="http://localhost:8080/cs336FinalProject/client/javaFunctions/qaKeyword.jsp">
-			<label for="keyword">Search by keyword</label>
-			<input type="text" name="keyword"/>
-			<input type="submit"/>
-		</form>
-		<form method="post" action="http://localhost:8080/cs336FinalProject/client/javaFunctions/qaPost.jsp">
-			<label for="question">Ask your question!</label>
-			<input type="text" name="question"/>
-			<input type="submit"/>
-		</form>
 	</body>
 </html>
