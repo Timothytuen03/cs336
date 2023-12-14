@@ -32,15 +32,17 @@
 			<option value="cust">customer name</option>
 		</select>
 		
-		<form id="flight_num" method="post" action="findRes.jsp">
+		<form id="flight_num" method="post" action="/cs336FinalProject/admin/javaFunctions/findRes.jsp">
 			<label for="number">Flight Number</label>
 			<input type="text" name="number" value="number"/>
 			<button>Find Reservations</button>
 		</form>
 		
-		<form id="cust_name" style="display: none" method="post" action="findRes.jsp">
-			<label for="name">Customer's Name</label>
-			<input type="text" name="name" value="name"/>
+		<form id="cust_name" style="display: none" method="post" action="/cs336FinalProject/admin/javaFunctions/findRes.jsp">
+			<label for="name">First Name</label>
+			<input type="text" name="fName"/>
+			<label for="name">Last Name</label>
+			<input type="text" name="lName"/>
 			<button>Find Reservations</button>
 		</form>
 	</body>

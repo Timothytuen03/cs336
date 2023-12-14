@@ -21,26 +21,29 @@
 		Statement stmt = con.createStatement();
 
 		//Get parameters from the HTML form at the index.jsp
-		String queryParam = request.getParameter("number");
+		String ticket_num = request.getParameter("ticket_num");
+		String u_id = request.getParameter("u_id");
 
 
-		//Make a select statement:
-		String find = "SELECT";
+		//Make an insert statement for the Sells table:
+		String del = "DELETE FROM purchase WHERE ticket_num= ? AND u_id = ?";
 		//Create a Prepared SQL statement allowing you to introduce the parameters of the query
-		PreparedStatement ps = con.prepareStatement(find);
+		PreparedStatement ps = con.prepareStatement(del);
 
 		//Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
-		ps.setString(1, );
+		ps.setString(1, ticket_num);
+		ps.setString(2, u_id);
+		ps.executeUpdate();
 		
 		
 		//Close the connection. Don't forget to do it, otherwise you're keeping the resources of the server allocated.
 		con.close();
-		/* response.sendRedirect("http://localhost:8080/cs336FinalProject/admin/viewAcc.jsp"); */
+		response.sendRedirect("http://localhost:8080/cs336FinalProject/client/nearFlight.jsp");
 		
 		
 	} catch (Exception ex) {
 		out.println(ex);
-		out.println("Can't find reservations");
+		out.println("Delete failed");
 	}
 %>
 </body>
